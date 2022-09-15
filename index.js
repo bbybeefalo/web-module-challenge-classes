@@ -90,6 +90,7 @@ class Car {
   drive(distance) {
     let fuelLeft = this.tank - (distance / this.milesPerGallon);
     if (fuelLeft >= 0) {
+      this.tank = this.tank - (distance / this.milesPerGallon);
       return this.odometer = this.odometer + distance;
     } else if (fuelLeft < 0) { 
       this.tank = 0
