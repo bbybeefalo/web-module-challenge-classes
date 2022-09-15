@@ -88,18 +88,19 @@ class Car {
     return this.tank = this.tank + gallons;
   }
   drive(distance) {
-    this.odometer = this.odometer + distance;
-     this.tank = this.tank - (distance / this.milesPerGallon);
-     if (this.tank <= 0) {
-      this.tank = 0;
-      return `I ran out of fuel at ${this.odometer} miles!`;
-     };
-  }
+    let fuelLeft = this.tank - (distance / this.milesPerGallon);
+    if (fuelLeft >= 0) {
+      return this.odometer = this.odometer + distance;
+    } else if (fuelLeft < 0) { 
+      this.odometer = this.odometer + (distance - (Math.abs(fuelLeft)) * this.milesPerGallon);
+      return `I ran out of fuel at ${this.odometer} miles!`
+    }
+  };
 }
 
 const car1 = new Car ('batmobile', 20);
 car1.fill(10);
-console.log(car1.drive(200));
+console.log(car1.drive(201));
 
 /*
   TASK 3
@@ -146,13 +147,13 @@ class Instructor extends Lambdasian {
     super(props);
     this.specialty = props.specialty;
     this.favLanguage = props.favLanguage;
-    this.catchphrase = props.catchphrase;  
+    this.catchPhrase = props.catchPhrase;  
   }
   demo (subject) {
-    return 'Today we are learning about ${subject'
+    return `Today we are learning about ${subject}`;
   }
-  grade (student) {
-    return '{student.name} receives a perfect score on {subject}'
+  grade (student, subject) {
+    return `${student.name} receives a perfect score on ${subject}`;
   }
 
 }
@@ -173,8 +174,16 @@ class Instructor extends Lambdasian {
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
 
-class Student {
-   
+class Student extends Lambdasian {
+   constructor(props) {
+    super(props);
+    this.previousBackground = props.previousBackground;
+    this.className = props.className;
+    this.favSubjects = props.favSubjects;
+   }
+   listSubjects(){
+    
+   }
 }
 
 /*
